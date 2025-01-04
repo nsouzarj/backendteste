@@ -45,6 +45,7 @@ public class UserController {
         Optional<User> userOptional = userRepository.findById(id);
         if (userOptional.isPresent()) {
             user.setId(id);
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
             User updatedUser = userRepository.save(user);
             return new ResponseEntity<>(updatedUser, HttpStatus.OK);
         } else {

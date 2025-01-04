@@ -28,4 +28,10 @@ public class AuthController {
         User user = userRepository.findByEmail(userDetails.getUsername());
         return new ResponseEntity<>(user.getProfile(), HttpStatus.OK);
     }
+
+    @GetMapping("/userdetails")
+    public User getCurrentUserDeteails(@AuthenticationPrincipal UserDetails userDetails) {
+        User user = userRepository.findByEmail(userDetails.getUsername());
+        return user;
+    }
 }
